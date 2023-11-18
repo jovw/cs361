@@ -31,7 +31,34 @@ python3 microservice.py
 
 ## How to programatically request data
 ### Request for book list data
+Get the book title input from the user: 
+
+Use the book title to the call on the mircoservice:
+```python
+def get_list_of_books(book_title):
+    url = "http://127.0.0.1:5001/books/" + book_title
+    res = requests.get(url)
+    if res.status_code == 200:
+        return res.json()
+    else: 
+        print("Error while fetching data", res.status_code)
+        return None
+```
 
 ### Request for book detail data
+Get the volume ID from the user: 
+
+Use the volume ID to call on the microservice:
+```python
+## Call to microservice to get the book details absed on Volumne ID
+def get_book_details(volume_id):
+    url = 'http://127.0.0.1:5001/book-details/' + volume_id
+    res = requests.get(url)
+    if res.status_code == 200:
+        return res.json()
+    else:
+        print("Error while fetching data", res.status_code)
+        return None
+```
 
 ## How to programmatically receive data
