@@ -30,5 +30,8 @@ python3 microservice.py
 ```
 
 ## How to programatically request data
+### Request for book list data
+
+### Request for book detail data
 
 ## How to programmatically receive data
