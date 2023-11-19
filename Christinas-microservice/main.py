@@ -37,10 +37,9 @@ if __name__ == '__main__':
     print('\n')
     thread_id = input("What is the volume ID of the book you would like to see more details about?\n")
     book_details = get_book_details(thread_id)
-    ## For the purpose of this demo I am only going to print the Title, Author name, publication date 
-    # and descriptiuon fo the given book 
-    ## but al the data for this book is returned - if you do not need anything else, we can adjust this to only
-    # return the volume info since it looks like this will contain all info you needed
+        # For this demo, only the Title, Author name, publication date,
+        # and description of the given book are printed,
+        # but all data for this book is returned.
     if book_details:
         title = book_details['volumeInfo']['title']
         authors = ', '.join(book_details['volumeInfo'].get('authors', []))
