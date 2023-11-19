@@ -1,7 +1,8 @@
 # Microservice Implementation 🌐
 
 ## Communication Contract 📜
-This README serves as the communication contract. I will not make any major changes to the code, besides what is needed to accommodate our partners' projects. The main communication pipeline will be REST calls.
+This README serves as the communication contract. I will not make any major changes to the code, besides what is needed to accommodate our partners' projects.\
+The main communication pipeline will be REST calls.
 
 ## How to Set Up the Virtual Environment 🖥️
 1. Open a terminal at the root of the project.
@@ -22,7 +23,7 @@ Project
     |- main.py
     |- microservice.py
 ```
-You would open the terminal at `MicroService`.
+You would open the terminal at `MicroService`. \
 3. Run the following command: 
 ```
 python3 microservice.py
@@ -30,7 +31,8 @@ python3 microservice.py
 
 ## How to Programmatically Request and Receive Data 🔄
 Note: This approach is slightly different from what is provided in `main.py`.
-In `main.py`, user inputs are gathered under `if __name__ == '__main__'`, and then other functions are called.
+In `main.py`, user inputs are gathered under `if __name__ == '__main__'`, and then other functions are called.\
+In this example, user input is given within the `get_list_books()` and `get_book_details()` functions
 
 ### Request for Book List Data 📚
 Use the book title to call the microservice:
