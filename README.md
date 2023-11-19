@@ -1,12 +1,11 @@
-# Microservice Implementation
+# Microservice Implementation 🌐
 
-## Communication Contract 
-This README serves as the communication contract. I will not amke any major data to the code, besdies waht is needed to accomodate for partners project 
-Main communication pipeline will be REST calls
+## Communication Contract 📜
+This README serves as the communication contract. I will not make any major changes to the code, besides what is needed to accommodate our partners' projects. The main communication pipeline will be REST calls.
 
-## How to set up the virtual enviroment 
-1. open a terminal at the root of the project
-2. run the following commands:
+## How to Set Up the Virtual Environment 🖥️
+1. Open a terminal at the root of the project.
+2. Run the following commands:
 ```
 !pip3 install --user virtualenv
 !python3 -m venv .
@@ -14,51 +13,79 @@ Main communication pipeline will be REST calls
 !pip3 install flask
 ```
 
-## How to start up the microservice 
-1. open up a terminal at the parent folder of teh microservice.py file
-2. ex if your folder structure looks like this:
+## How to Start Up the Microservice 🚀
+1. Open a terminal at the parent folder of the `microservice.py` file.
+2. Example: If your folder structure looks like this:
 ```
 Project
   |- MicroService
     |- main.py
     |- microservice.py
 ```
-You would open the terminal at MicroService 
-3. run the following command: 
+You would open the terminal at `MicroService`.
+3. Run the following command: 
 ```
 python3 microservice.py
 ```
 
-## How to programatically request data
-### Request for book list data
-Get the book title input from the user: 
+## How to Programmatically Request and Receive Data 🔄
+Note: This approach is slightly different from what is provided in `main.py`.
+In `main.py`, user inputs are gathered under `if __name__ == '__main__'`, and then other functions are called.
 
-Use the book title to the call on the mircoservice:
+### Request for Book List Data 📚
+Use the book title to call the microservice:
 ```python
-def get_list_of_books(book_title):
-    url = "http://127.0.0.1:5001/books/" + book_title
-    res = requests.get(url)
-    if res.status_code == 200:
-        return res.json()
-    else: 
-        print("Error while fetching data", res.status_code)
-        return None
+def get_list_of_books():
+ # Get the book title input from the user: 
+ book_title = input("What book would you like to look up?\n")
+ url = "http://127.0.0.1:5001/books/" + book_title
+ res = requests.get(url)
+ if res.status_code == 200:
+     books = res.json()
+     if books:
+         items = books.get('items', [])
+         # For demo purposes, only the book title and the thread id are printed,
+         # but all data for all the books are returned.
+         # Only the first 20 books are printed as sometimes it returns many books.
+         if items:
+             for item in items[:20]:
+                 book_title = item['volumeInfo']['title']
+                 volume_id = item['id']
+                 print(f'Title: {book_title}, Volume ID: {volume_id}')
+ else: 
+     print("Error while fetching data", res.status_code)
+     return None
 ```
+📥 books will contain the received data
 
-### Request for book detail data
-Get the volume ID from the user: 
-
-Use the volume ID to call on the microservice:
+### Request for Book Detail Data 📖
+Use the volume ID to call the microservice:
 ```python
-## Call to microservice to get the book details absed on Volumne ID
-def get_book_details(volume_id):
+def get_book_details():
+    volume_id = input("What is the volume ID of the book you would like to see more details about?\n")
     url = 'http://127.0.0.1:5001/book-details/' + volume_id
     res = requests.get(url)
     if res.status_code == 200:
-        return res.json()
+        # book_details contain received Data 
+        book_details = res.json()
+        # For this demo, only the Title, Author name, publication date,
+        # and description of the given book are printed,
+        # but all data for this book is returned.
+        if book_details:
+            title = book_details['volumeInfo']['title']
+            authors = ', '.join(book_details['volumeInfo'].get('authors', []))
+            publicationDate = book_details['volumeInfo']['publishedDate']
+            summary = book_details['volumeInfo']['description']
+
+            print('\n')
+            print(f'Book's Title: {title}')
+            print(f'Authors: {authors}')
+            print(f'Publication Date: {publicationDate}')
+            print(f'\nSummary:\n {summary}\n')
     else:
         print("Error while fetching data", res.status_code)
         return None
 ```
+📥 book_details will contain the received data
 
-## How to programmatically receive data
+[Here are the code reference: `main.py`, `microservice.py`]
