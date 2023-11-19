@@ -93,4 +93,4 @@ def get_book_details():
 [Here are the code reference: `main.py`, `microservice.py`]
 
 ## UML Sequence Diagram 📋
-![uml](https://github.com/jovw/cs361/assets/104602094/22cb25aa-baef-4778-a5f8-bcc3e1724463)
+![uml](https://github.com/jovw/cs361/blob/main/Images/uml.jpg)
