@@ -26,9 +26,9 @@ if __name__ == '__main__':
     books = get_list_of_books(book_title)
     if books:
         items = books.get('items', [])
-        ## for purpise of demoing how this works I am ony going to print the book title and the thread id 
-        ## but all the data for all the books are returned. 
-        ## I am also only going to print the first 20 books because sometimes it brings back quite a bit of books
+         # For demo purposes, only the book title and the thread id are printed,
+         # but all data for all the books are returned.
+         # Only the first 20 books are printed as sometimes it returns many books.
         if items:
             for item in items[:20]:
                 book_title = item['volumeInfo']['title']
@@ -37,10 +37,9 @@ if __name__ == '__main__':
     print('\n')
     thread_id = input("What is the volume ID of the book you would like to see more details about?\n")
     book_details = get_book_details(thread_id)
-    ## For the purpose of this demo I am only going to print the Title, Author name, publication date 
-    # and descriptiuon fo the given book 
-    ## but al the data for this book is returned - if you do not need anything else, we can adjust this to only
-    # return the volume info since it looks like this will contain all info you needed
+        # For this demo, only the Title, Author name, publication date,
+        # and description of the given book are printed,
+        # but all data for this book is returned.
     if book_details:
         title = book_details['volumeInfo']['title']
         authors = ', '.join(book_details['volumeInfo'].get('authors', []))
