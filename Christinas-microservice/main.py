@@ -26,9 +26,9 @@ if __name__ == '__main__':
     books = get_list_of_books(book_title)
     if books:
         items = books.get('items', [])
-        ## for purpise of demoing how this works I am ony going to print the book title and the thread id 
-        ## but all the data for all the books are returned. 
-        ## I am also only going to print the first 20 books because sometimes it brings back quite a bit of books
+         # For demo purposes, only the book title and the thread id are printed,
+         # but all data for all the books are returned.
+         # Only the first 20 books are printed as sometimes it returns many books.
         if items:
             for item in items[:20]:
                 book_title = item['volumeInfo']['title']
